@@ -4,6 +4,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-balham.css";
 import { useEffect, useState } from "react";
+import { Button, Badge } from "reactstrap";
 
 const columns = [
   { headerName: "Title", field: "title" },
@@ -40,11 +41,32 @@ function App() {
   console.log(rowData);
 
   return (
-    <div
-      className="ag-theme-balham"
-      style={{ height: "300px", width: "600px" }}
-    >
-      <AgGridReact columnDefs={columns} rowData={rowData} pagination={true} paginationPageSize={7}/>
+    <div className="container">
+      <h1>Book Catalogue</h1>
+      <p>
+        <Badge color="success">{rowData.length}</Badge> Books published in 2000
+        in the Drama category
+      </p>
+      <div
+        className="ag-theme-balham"
+        style={{ height: "300px", width: "810px" }}
+      >
+        <AgGridReact
+          columnDefs={columns}
+          rowData={rowData}
+          pagination={true}
+          paginationPageSize={7}
+        />
+      </div>
+      <Button
+        color="info"
+        size="sm"
+        className="mt-3"
+        href="https://openlibrary.org/developers/api"
+        target="_blank"
+      >
+        Go to Open Library API
+      </Button>
     </div>
   );
 }
